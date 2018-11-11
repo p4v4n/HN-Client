@@ -61,6 +61,10 @@ body {
   text-align: center;
 }
 
+.header-sec {
+  display: inline-block;
+}
+
 h3 {
   font-size: 200%;
   font-weight: bolder;
@@ -69,6 +73,11 @@ h3 {
 .pi, .hi {
   display: inline;
   margin: 10px;
+}
+
+.ipp {
+  display: inline;
+  margin-left: 20px;
 }
 
 .item__sl, .comment__sl {
@@ -85,6 +94,7 @@ h3 {
 .fpi {
   margin-top: 20px;
 }
+
 .item__all {
   background-color: rgb(246, 246, 239);
   margin-left: 25px;

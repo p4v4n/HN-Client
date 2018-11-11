@@ -1,6 +1,7 @@
 (ns app.views
   (:require [app.state :as state]
             [app.api :as api]
+            [app.events :as events]
             [app.helpers :as helpers]))
 
 (defn header
@@ -15,7 +16,14 @@
        [:div.hi
         {:key view}
         [:a {:href (str "#/" view "/1")}
-         view]])]]])
+         view]])
+     [:div.ipp
+      [:select {:default-value (:ipp @state/app-state)
+                :on-change #(events/change-ipp %)}
+       [:option {:value 5} "5"]
+       [:option {:value 10} "10"]
+       [:option {:value 15} "15"]
+       [:option {:value 20} "20"]]]]]])
 
 (defn item-card
   [{:keys [id title time score url by descendants]}]

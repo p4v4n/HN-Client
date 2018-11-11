@@ -23,7 +23,6 @@
   (defroute "/" []
     (swap! state/app-state assoc :current-view :top)
     (swap! state/app-state assoc :page-number 1)
-    (swap! state/app-state assoc :ipp 10)
     (api/get-section-ids "top" 1))
 
   (defroute "/item/:id" {id :id}
@@ -35,7 +34,6 @@
     (let [id-int (js/parseInt id)]
       (swap! state/app-state assoc :current-view (keyword section))
       (swap! state/app-state assoc :page-number id-int)
-      (swap! state/app-state assoc :ipp 10)
       (api/get-section-ids section id-int)))
 
   (hook-browser-navigation!))
