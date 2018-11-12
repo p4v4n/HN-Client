@@ -1,0 +1,115 @@
+
+/* = reset ================================================================= */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block
+}
+
+a:visited {
+  color: #828282;
+}
+
+a:link {
+  color: #000000;
+}
+
+.subtext {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 8pt;
+  color: #828282;
+}
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10pt;
+}
+
+.header {
+
+  margin-bottom: 15px;
+  background-color: #ff6600;
+}
+
+.hl {
+  text-align: center;
+}
+
+.header-sec {
+  display: inline-block;
+}
+
+h3 {
+  font-size: 200%;
+  font-weight: bolder;
+}
+
+.pi, .hi {
+  display: inline;
+  margin: 10px;
+}
+
+.ipp {
+  display: inline;
+  margin-left: 20px;
+}
+
+.item__sl, .comment__sl {
+  color: #828282;
+  text-decoration: none
+}
+
+.item, .comment {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  margin: 10px 10px 10px 20px;
+}
+
+.fpi {
+  margin-top: 20px;
+}
+
+.item__all {
+  background-color: rgb(246, 246, 239);
+  margin-left: 25px;
+}
+
+.item_a {
+  background-color: #f6f6ef
+}
+
+.pagebar {
+  margin-top: 20px;
+  margin-left: 25%;
+}
+
+.app {
+  width: 85%;
+  margin-left: 7.5%;
+}
