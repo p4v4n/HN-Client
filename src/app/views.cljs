@@ -1,5 +1,5 @@
 (ns app.views
-  (:require [app.state :as state]
+  (:require [app.state :refer [app-state tab-state]]
             [app.api :as api]
             [app.events :as events]
             [app.helpers :as helpers]))
@@ -18,7 +18,7 @@
         [:a {:href (str "#/" view "/1")}
          view]])
      [:div.ipp
-      [:select {:default-value (:ipp @state/app-state)
+      [:select {:default-value (:ipp @tab-state)
                 :on-change #(events/change-ipp %)}
        [:option {:value 5} "5"]
        [:option {:value 10} "10"]
@@ -39,13 +39,13 @@
 
 (defn front-page-items
   []
-  (let [{:keys [page-number current-view ipp] :as state} @state/app-state]
+  (let [{:keys [page-number current-view ipp] :as state} @tab-state]
     [:div.fpi
-     (doall (for [id (->> (get state current-view)
+     (doall (for [id (->> (get @app-state current-view)
                           (drop (* ipp (dec page-number)))
                           (take ipp))]
               [:div {:key id}
-               [item-card (get state id)]]))]))
+               [item-card (get @app-state id)]]))]))
 
 (defn comment-card
   [{:keys [id title time score url by descendants text kids]}]
@@ -59,7 +59,7 @@
 
 (defn show-complete-item
   [integer-id]
-  (let [item (get @state/app-state integer-id)]
+  (let [item (get @app-state integer-id)]
     [:div.item__all
      [comment-card item]
      (doall (for [kid-item (:kids item)]
@@ -68,7 +68,7 @@
 
 (defn page-bar
   []
-  (let [{:keys [page-number current-view ipp]} @state/app-state]
+  (let [{:keys [page-number current-view ipp]} @tab-state]
     [:div.pagebar
      [:div.pi
       [:a {:href (str "#/" (name current-view) "/"
@@ -80,7 +80,7 @@
      [:div.pi
       [:a  {:href (str "#/" (name current-view) "/"
                        (if (< (* ipp page-number)
-                              (count (current-view @state/app-state)))
+                              (count (current-view @app-state)))
                          (inc page-number)
                          page-number))}
        ">>"]]]))
@@ -88,7 +88,7 @@
 (defn display-view
   "select components based on current-view"
   []
-  (let [cv (:current-view @state/app-state)]
+  (let [cv (:current-view @tab-state)]
     (if (integer? cv)
       [:div.item_a (show-complete-item cv)]
       [:div.item_a

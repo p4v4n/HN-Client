@@ -1,9 +1,9 @@
 (ns app.api
   (:require [ajax.core :refer [GET]]
-            [app.state :as state]
+            [app.state :refer [app-state tab-state]]
             [app.helpers :as helpers]))
 
-(def base-url "http://hacker-news.firebaseio.com")
+(def base-url "https://hacker-news.firebaseio.com")
 
 (defn error-handler
   "Log failed requests"
@@ -14,7 +14,7 @@
 (defn item-handler
   "Store item details in app-state"
   [response]
-  (swap! state/app-state assoc (:id response) response))
+  (swap! app-state assoc (:id response) response))
 
 (defn get-item
   "Make request for an particular item"
@@ -35,9 +35,9 @@
 (defn make-requests-for-items
   "Initiate requests for items on a particular page"
   [section page-number]
-  (let [ipp (:ipp @state/app-state)]
+  (let [ipp (:ipp @tab-state)]
     (doall (for [id (->> (keyword section)
-                         (get @state/app-state)
+                         (get @app-state)
                          (drop (* ipp (- page-number 1)))
                          (take ipp))]
              (get-item id item-handler)))))
@@ -45,7 +45,7 @@
 (defn id-handler
   "Store ids of section and initiate requests for items to display"
   [response section page-number]
-  (swap! state/app-state assoc (keyword section) response)
+  (swap! app-state assoc (keyword section) response)
   (make-requests-for-items section page-number))
 
 (defn get-section-ids
